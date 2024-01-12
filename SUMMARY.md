@@ -19,6 +19,14 @@
 * [🛠 Integration (Frontend)](demo/integration-frontend.md)
 * [🖇 Integration (Backend)](demo/integration-backend.md)
 
-## How to Integrate with Nexus Network?
+## Developer Docs
 
-* [🖥 For Developers : Quick Guide](how-to-integrate-with-nexus-network/for-developers-quick-guide.md)
+* [📔 Smart Contracts](developer-docs/smart-contracts/README.md)
+  * [Nexus Contract](developer-docs/smart-contracts/nexus-contract.md)
+  * [Node Operator Contract](developer-docs/smart-contracts/node-operator-contract.md)
+  * [Nexus Bridge ETH](developer-docs/smart-contracts/nexus-bridge-eth/README.md)
+    * [Different Nexus Bridge Architecture](developer-docs/smart-contracts/nexus-bridge-eth/different-nexus-bridge-architecture.md)
+  * [Nexus Bridge DAI](developer-docs/smart-contracts/nexus-bridge-dai.md)
+  * [Validator Execution Rewards](developer-docs/smart-contracts/validator-execution-rewards.md)
+* [🤖 Backend Bot](developer-docs/backend-bot.md)
+* [🖥 Integration Guide](developer-docs/integration-guide.md)

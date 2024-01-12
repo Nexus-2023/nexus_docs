@@ -12,7 +12,7 @@ layout:
     visible: true
 ---
 
-# 🖥 For Developers : Quick Guide
+# 🖥 Integration Guide
 
 Nexus Network has built an easy-to-integrate solution for the rollups. The Nexus contracts have already been deployed on Goerli. This document serves as an integration manual for rollup partners to test out the product by deploying a separate bridge contract. The goal of this exercise is to test the system end-to-end on Goerli, and over time deploy it on a public testnet.
 
@@ -69,3 +69,7 @@ Here are the steps to integrate with Nexus Network on the Goerli Test Network -
    1. Fund the rollup bridge address - This should result in the creation of new validators. Validator activation takes 2-3 days
    2. Remove ETH from the bridge address - This should result in unstaking of ETH from the validators (note - Unstaking on Goerli takes 2-3 days)
    3. Change staking ratio on the bridge - This should trigger staking/unstaking of ETH based on whether the ratio is increased/decreased. New validators are created if enough ETH is available or unstaked if enough ETH is not available to fulfill the ETH withdrawals
+
+### Nexus Contracts (Goerli)
+
+<table><thead><tr><th width="254">Name</th><th>Address</th></tr></thead><tbody><tr><td>Nexus Contract Proxy</td><td><a href="https://goerli.etherscan.io/address/0x7610dd2DE44aA3c03313b4c2812C482D86F3a9e7">0x7610dd2DE44aA3c03313b4c2812C482D86F3a9e7</a></td></tr><tr><td>Nexus Contract Implementation</td><td><a href="https://goerli.etherscan.io/address/0x1bbb3ECa293450dF14fd3e270F1B6DBE2acAA8eB">0x1bbb3ECa293450dF14fd3e270F1B6DBE2acAA8eB</a></td></tr><tr><td>Validator Execution Reward Contract</td><td><a href="https://goerli.etherscan.io/address/0xc9DD08647269A1855858B6869350C219EB8761A7">0xc9DD08647269A1855858B6869350C219EB8761A7</a></td></tr><tr><td>Node Operator Contract Proxy</td><td><a href="https://goerli.etherscan.io/address/0x39F09e6FEB8163dBD5c46F2f30830bfaf896a12e">0x39F09e6FEB8163dBD5c46F2f30830bfaf896a12e</a></td></tr><tr><td>Node Operator Contract Implementation</td><td><a href="https://goerli.etherscan.io/address/0x07E7fa61D0c4d2aACF1Cc82E43b9de7A5Eb525D6">0x07E7fa61D0c4d2aACF1Cc82E43b9de7A5Eb525D6</a></td></tr></tbody></table>

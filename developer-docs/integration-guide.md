@@ -18,22 +18,18 @@ Nexus Network has built an easy-to-integrate solution for the rollups. The Nexus
 
 Here are the steps to integrate with Nexus Network on the Goerli Test Network -
 
-1.  Import the _`nexus-package`_ to your bridge contract
+1.  There are  different types of nexus bridge contracts that you can implement in the bridge contract:
 
-    Code - [https://github.com/Nexus-2023/Nexus-Contracts/tree/nexus/withdrawal/contracts/nexus\_bridge](https://github.com/Nexus-2023/Nexus-Contracts/tree/nexus/withdrawal/contracts/nexus\_bridge)
+    Code - [https://github.com/Nexus-2023/Nexus-Contracts/tree/main/contracts/nexus\_bridge](https://github.com/Nexus-2023/Nexus-Contracts/tree/main/contracts/nexus\_bridge)
 
-    \
-    Polygon bridge:
+    After selecting the type of nexus bridge you need to figure out how you want to integrate:
 
-<div>
+    1.  **Deploy Nexus as a library**: This can be done by deploying the Nexus Library separately and storing the library address in the bridge contract
 
-<img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/36d96375-0fd3-48dd-b3d7-8bc71c8663d5/af1be306-ea09-4b0b-bcb0-b3987d3361d0/Untitled.png" alt="Untitled">
+        Example code with polygon zkEVM: [https://github.com/Nexus-2023/zkevm-contracts/blob/polygon/Tangible/contracts/PolygonZkEVMBridge.sol](https://github.com/Nexus-2023/zkevm-contracts/blob/polygon/Tangible/contracts/PolygonZkEVMBridge.sol)
+    2.  **Integrate with bridge**: This can be done by inheriting the Nexus contract.
 
- 
-
-<figure><img src="../.gitbook/assets/Untitled (3).png" alt=""><figcaption></figcaption></figure>
-
-</div>
+        Example code: [https://github.com/Nexus-2023/Nexus-Contracts/blob/main/contracts/demo\_contracts/BridgeContractDAO.sol](https://github.com/Nexus-2023/Nexus-Contracts/blob/main/contracts/demo\_contracts/BridgeContractDAO.sol)
 
 &#x20;       Optimism Bridge:
 
@@ -48,7 +44,7 @@ Here are the steps to integrate with Nexus Network on the Goerli Test Network -
 </div>
 
 2. Share a public address with the Nexus team to get whitelisted. This address will act as the rollup admin address to trigger future parameter changes. The address can be a multi-sig, a contract address, etc
-3.  Once the address is whitelisted, perform a contact call to the [Nexus Network contracts](https://goerli.etherscan.io/address/0xd1c788ac548cb467b3c4b14cf1793bca3c1dcbeb#writeProxyContract) highlighting -
+3.  Once the address is whitelisted, perform a contact call to the [Nexus Network contracts](https://goerli.etherscan.io/address/0x7610dd2DE44aA3c03313b4c2812C482D86F3a9e7#writeProxyContract) highlighting -
 
     1. Rollup bridge contract address (This is the address to the newly deployed bridge after integrating the _`nexus-package`_)
     2. Staking limit for the rollup (percentage of ETH to be staked from the rollup bridge)

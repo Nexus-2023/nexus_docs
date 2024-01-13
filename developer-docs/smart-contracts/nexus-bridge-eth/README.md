@@ -1,8 +1,8 @@
 # Nexus Bridge ETH
 
-Nexus Bridge ETH contract is used by Rollup Bridge Contract to enable staking of ETH in their Bridge Contract. There are two ways to integrate Nexus Bridge Contract with Rollup and we'll talk about them later on. First, let's see what are common methods in all types of contracts:
+Nexus Bridge ETH contract is used by Rollup Bridge Contract to enable staking of ETH in their bridge contract. There are two ways to integrate Nexus bridge contracts with rollups which are detailed [here](different-nexus-bridge-architecture.md). First, let's see what are the common methods in all types of contracts:
 
-1.  **Deposit Validator:** This is the main function that needs to be present in the Bridge Contract as it enables the creation of validators. This function can only be called from the Nexus Contract
+1.  **Deposit Validator:** This is the main function that needs to be present in the rollup bridge contract as it enables the creation of validators. This function can only be called from the Nexus Contract
 
     ```solidity
     function depositValidatorNexus(
@@ -15,7 +15,7 @@ Nexus Bridge ETH contract is used by Rollup Bridge Contract to enable staking of
     ```solidity
     function setNexusFee(uint256 _nexus_fee)
     ```
-3.  **Update Slashing:** This function updates the slashing if it happens for a particular validator
+3.  **Update Slashing:** This function updates the slashing details if it happens for a particular validator
 
     ```solidity
     function validatorsSlashed(uint256 amount)
@@ -38,4 +38,4 @@ _<mark style="color:blue;">Claiming of rewards has different architectures and i
 For integration with the Nexus network a Rollup has two options:
 
 1. **Deploy nexus package as a library:** If a Rollup Bridge Contract is more than 23KB, it needs to deploy the nexus package as a library. This way they can make _`delegatecall`_ to the library and perform the execution on their Bridge Contract
-2. **Integrate nexus package with Bridge Contract Code:** If a Rollup Bridge Contract is less than 23KB, they can directly import the Nexus package in their Bridge Contract.
+2. **Integrate the Nexus package with Bridge Contract Code:** If a Rollup Bridge Contract is less than 23KB, they can directly import the Nexus package in their Bridge Contract.

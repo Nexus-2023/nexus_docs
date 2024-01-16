@@ -1,6 +1,6 @@
 # Nexus Bridge ETH
 
-Nexus Bridge ETH contract is used by Rollup Bridge Contract to enable staking of ETH in their bridge contract. There are two ways to integrate Nexus bridge contracts with rollups which are detailed [here](different-nexus-bridge-architecture.md). First, let's see what are the common methods in all types of contracts:
+Nexus Bridge ETH contract is used by rollup bridge to enable staking of ETH locked in their bridge contract. Nexus Network offers two possible designs for rollups when they integrate Nexus bridge contracts which are detailed [here](different-nexus-bridge-architecture.md). This page elaborates on the common methods in both of the possible designs:
 
 1.  **Deposit Validator:** This is the main function that needs to be present in the rollup bridge contract as it enables the creation of validators. This function can only be called from the Nexus Contract
 
@@ -25,17 +25,17 @@ Nexus Bridge ETH contract is used by Rollup Bridge Contract to enable staking of
     ```solidity
     function getRewards()
     ```
-5.  **Exit Validator:** Whenever a validator exits and its balance is transferred back to the bridge contract, this function is called to update the exited validator count. This is to ensure that the Bridge Contract does not treat the exit balance as rewards distributed and make it available for claiming for any party involved.
+5.  **Exit Validator:** Whenever a validator exits and its balance is transferred back to the bridge contract, this function is called to update the exited validator count. This ensures that the bridge contract can differentiate between ETH received through validator exits and staking returns.
 
     ```solidity
     function updateExitedValidators()
     ```
 
-_<mark style="color:blue;">Claiming of rewards has different architectures and implements a few more functionalities apart from the above depending on the architecture selected by the Rollup for reward management.</mark>_&#x20;
+_<mark style="color:blue;">Claiming of staking rewards has two possible architectures and implements a few more functionalities apart from the above depending on the architecture selected by the Rollup for reward management.</mark>_&#x20;
 
 ### Integration:
 
-For integration with the Nexus network a Rollup has two options:
+For integration with Nexus Network, a rollup has two options:
 
-1. **Deploy nexus package as a library:** If a Rollup Bridge Contract is more than 23KB, it needs to deploy the nexus package as a library. This way they can make _`delegatecall`_ to the library and perform the execution on their Bridge Contract
-2. **Integrate the Nexus package with Bridge Contract Code:** If a Rollup Bridge Contract is less than 23KB, they can directly import the Nexus package in their Bridge Contract.
+1. **Deploy nexus-package as a library:** If a rollup bridge contract is more than 23 kb in size, it needs to deploy the nexus-package as a library. This way they can make _`delegatecall`_ to the library and perform the execution on their bridge contract
+2. **Integrate the nexus-package with bridge contract code:** If a rollup bridge contract is less than 23 kb in size, it can directly import the nexus-package in its bridge contract

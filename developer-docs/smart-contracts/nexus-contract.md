@@ -35,9 +35,9 @@ This contract is the heart and soul of Nexus Network. This contract is a UUPS up
 
     1. **bridgeContract**: This is the bridge contract address that has the Nexus Network package integrated.&#x20;
     2. **operatorCluster**: Set of node operators as selected by the rollup. If the rollups does not have a preference, Nexus Network will set the operatorCluster to the most performant clusters
-    3. **nexusFee**: Sets the percentage of staking returns that go to Nexus Network as fees. It can be between 0-10%.&#x20;
+    3. **nexusFee**: Sets the percentage of staking returns that go to Nexus Network as fees. It can be between 0-10% and is set by the rollup in consultation with the Nexus Network team.
 
-    _<mark style="color:blue;">We recommend that it should be 10% as it helps Nexus Network to give fair pay to Node Operators and manage our operational cost.</mark>_
+    _<mark style="color:blue;">We recommend that it should be 10% as it helps Nexus Network to give fair pay to Node Operators and manage our operational costs.</mark>_
 2. **Change Rollup Parameters**
    1.  **Changing Staking Limit**: Rollups can use this function to change their staking limit.
 
@@ -57,9 +57,9 @@ This contract is the heart and soul of Nexus Network. This contract is a UUPS up
 
 ### Validator Management
 
-Validators are the backbone of any staking infrastructure and likewise are one of the most important component of SSV:
+Validators are the backbone of any staking infrastructure and likewise are one of the most important components of SSV:
 
-1.  **Depositing Validator:** This function is used to deposit a validator to the respective rollup bridge
+1.  **Deposit Validator:** This function is used to deposit a validator to the respective rollup bridge
 
     ```solidity
     struct Validator {
@@ -75,7 +75,7 @@ Validators are the backbone of any staking infrastructure and likewise are one o
 
     1. **\_rollupAdmin**: Address for rollup admin that can modify the rollup parameters on Nexus&#x20;
     2. **\_validators**: List of validators that need to be deposited to the bridge contract for activation
-2.  **Slashing Validator:** <mark style="color:red;">This function picks up the slashing details from oracles and updates the it for a particular rollup</mark>
+2.  **Slashing Validator:** This function picks up the slashing details from oracles and updates it for a particular rollup
 
     ```solidity
     function validatorSlashed(address rollupAdmin, uint256 amountSlashed)
@@ -85,7 +85,7 @@ Validators are the backbone of any staking infrastructure and likewise are one o
     ```solidity
     function validatorExit(address rollupAdmin,bytes[] calldata pubkeys)
     ```
-4.  **Validator exit Balance transfer:** Nexus Network orcalces communicate with this function to update whenever an exited validator balance is transferred to the rollup bridge. Whenever the function receives an update, it communicates the rollup bridge contract about the balance transfer, and informs the Node Operators to stop performing the validation for the validator
+4.  **Validator exit Balance transfer:** Nexus Network oracles communicate with this function to update whenever an exited validator balance is transferred to the rollup bridge. Whenever the function receives an update, it communicates the rollup bridge contract about the balance transfer and informs the Node Operators to stop performing the validation for the validator
 
     ```solidity
     function validatorExitBalanceTransferred(address rollupAdmin,bytes calldata pubkey, uint64[] memory operatorIds, ISSVNetworkCore.Cluster memory cluster)

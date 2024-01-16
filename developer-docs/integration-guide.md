@@ -24,10 +24,10 @@ Here are the steps to integrate with Nexus Network on the Goerli Test Network -
 
     After selecting the type of nexus bridge you need to figure out how you want to integrate:
 
-    1.  **Deploy Nexus as a library**: This can be done by deploying the Nexus Library separately and storing the library address in the bridge contract
+    1.  **Deploy Nexus as a library**: This can be done by deploying the nexus-package separately and storing the library address in the bridge contract
 
         Example code with polygon zkEVM: [https://github.com/Nexus-2023/zkevm-contracts/blob/polygon/Tangible/contracts/PolygonZkEVMBridge.sol](https://github.com/Nexus-2023/zkevm-contracts/blob/polygon/Tangible/contracts/PolygonZkEVMBridge.sol)
-    2.  **Integrate with bridge**: This can be done by inheriting the Nexus contract.
+    2.  **Integrate with bridge**: This can be done by inheriting the nexus-package.
 
         Example code: [https://github.com/Nexus-2023/Nexus-Contracts/blob/main/contracts/demo\_contracts/BridgeContractDAO.sol](https://github.com/Nexus-2023/Nexus-Contracts/blob/main/contracts/demo\_contracts/BridgeContractDAO.sol)
 
@@ -48,7 +48,7 @@ Here are the steps to integrate with Nexus Network on the Goerli Test Network -
 
     1. Rollup bridge contract address (This is the address to the newly deployed bridge after integrating the _`nexus-package`_)
     2. Staking limit for the rollup (percentage of ETH to be staked from the rollup bridge)
-    3. ClusterID - Select the cluster of node operators to stake with (Over time this will become more customizable to allow the rollup to select multiple clusters and allocate a percentage of their assets to each rollup)
+    3. ClusterID - Select the cluster of node operators to stake with (Over time this will become more customizable to allow the rollup to select multiple clusters and allocate a percentage of their assets to each cluster)
        1. For devnet choose 1
 
     <div>
@@ -62,8 +62,8 @@ Here are the steps to integrate with Nexus Network on the Goerli Test Network -
     </div>
 4. After finishing the whitelisting, validators will automatically get created by the Nexus off-chain bots
 5. You can perform the following checks on the system -
-   1. Fund the rollup bridge address - This should result in the creation of new validators. Validator activation takes 2-3 days
-   2. Remove ETH from the bridge address - This should result in unstaking of ETH from the validators (note - Unstaking on Goerli takes 2-3 days)
+   1. Fund the rollup bridge address - This should result in the creation of new validators. Validator activation takes a few hours
+   2. Remove ETH from the bridge address - This should result in unstaking of ETH from the validators (note - unstaking on Goerli takes 2-3 days)
    3. Change staking ratio on the bridge - This should trigger staking/unstaking of ETH based on whether the ratio is increased/decreased. New validators are created if enough ETH is available or unstaked if enough ETH is not available to fulfill the ETH withdrawals
 
 ### Nexus Contracts (Goerli)

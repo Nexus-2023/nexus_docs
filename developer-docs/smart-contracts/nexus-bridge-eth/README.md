@@ -10,16 +10,22 @@ Nexus Bridge ETH contract is used by rollup bridge to enable staking of ETH lock
             uint256 stakingLimit
         )
     ```
-2.  **Set Nexus Fee:** This function enables setting nexus fee percentage so that the fee is transferred from the rewards accumulated
+
+
+2.  **Set Nexus Fee:** This function enables setting a fee percentage for Nexus Network that is transferred from the rewards accumulated
 
     ```solidity
     function setNexusFee(uint256 _nexus_fee)
     ```
+
+
 3.  **Update Slashing:** This function updates the slashing details if it happens for a particular validator
 
     ```solidity
     function validatorsSlashed(uint256 amount)
     ```
+
+
 4.  **Get Rewards Accumulated:** This function shows the amount of rewards that have accumulated and can be claimed.
 
     ```solidity

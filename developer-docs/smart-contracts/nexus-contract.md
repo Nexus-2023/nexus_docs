@@ -4,13 +4,15 @@ This contract is the heart and soul of Nexus Network. This contract is a UUPS up
 
 ### Admin Management
 
-1.  **Whitelist Rollup:** Before a rollup is registered with Nexus Network, an address is whitelisted from the rollup side that acts as rollup admin and performs all the rollup actions. This ensures that no other person/entity can register a rollup bridge contract without the awareness of the rollup. This action is performed by Nexus Admin.
+1.  **Whitelist Rollup:** A roll looking to register with Nexus Network, must get an address whitelisted by Nexus Admin. The address acts as the rollup admin and performs all the rollup actions. This whitelisting process removes any potential spamming in the name of a particular rollup
 
     <pre class="language-solidity"><code class="lang-solidity"><strong>function whitelistRollup(
     </strong>        string calldata name,
             address rollupAddress
         )
     </code></pre>
+
+
 2.  **Set Node Operator:** This function sets the Node Operator Contract address
 
     ```solidity
@@ -18,7 +20,7 @@ This contract is the heart and soul of Nexus Network. This contract is a UUPS up
     ```
 
 
-3.  **Change Execution Fee Recipient Address:** Proposer rewards are sent to a different address for validators**.** This function sets the execution fee recipient address.
+3.  **Change Execution Fee Recipient Address:** Block proposer rewards earned by validators are sent to a different wallet address to prevent any potential confusion for the sequencer**.** The changeExecutionFeeAddress() function sets the execution fee recipient address
 
     <pre class="language-solidity"><code class="lang-solidity"><strong>function changeExecutionFeeAddress(address _execution_fee_address)
     </strong></code></pre>
@@ -31,13 +33,13 @@ This contract is the heart and soul of Nexus Network. This contract is a UUPS up
     registerRollup(address bridgeContract,uint64 operatorCluster,uint256 nexusFee,uint16 stakingLimit)
     ```
 
+    \
     Parameters:
 
-    1. **bridgeContract**: This is the bridge contract address that has the Nexus Network package integrated.&#x20;
-    2. **operatorCluster**: Set of node operators as selected by the rollup. If the rollups does not have a preference, Nexus Network will set the operatorCluster to the most performant clusters
-    3. **nexusFee**: Sets the percentage of staking returns that go to Nexus Network as fees. It can be between 0-10% and is set by the rollup in consultation with the Nexus Network team.
+    1. **bridgeContract**: This is the modified bridge contract address that has the Nexus Network package integrated&#x20;
+    2. **operatorCluster**: Set of node operators as selected by the rollup. If the rollups do not have a preference, Nexus Network will set the operatorCluster to the most performant clusters
+    3. **nexusFee**: Sets the percentage of staking returns that go to Nexus Network as fees. It is set by the rollup in consultation with the Nexus Network team.\
 
-    _<mark style="color:blue;">We recommend that it should be 10% as it helps Nexus Network to give fair pay to Node Operators and manage our operational costs.</mark>_
 2. **Change Rollup Parameters**
    1.  **Changing Staking Limit**: Rollups can use this function to change their staking limit.
 
@@ -71,21 +73,27 @@ Validators are the backbone of any staking infrastructure and likewise are one o
     function depositValidatorRollup(address _rollupAdmin,Validator[] calldata _validators)
     ```
 
+    \
     Parameters:
 
     1. **\_rollupAdmin**: Address for rollup admin that can modify the rollup parameters on Nexus&#x20;
-    2. **\_validators**: List of validators that need to be deposited to the bridge contract for activation
+    2. **\_validators**: List of validators that need to be deposited to the bridge contract for activation\
+
 2.  **Slashing Validator:** This function picks up the slashing details from oracles and updates it for a particular rollup
 
     ```solidity
     function validatorSlashed(address rollupAdmin, uint256 amountSlashed)
     ```
+
+
 3.  **Validator Exit:** This function updates the validator exit status in the Nexus Contract
 
     ```solidity
     function validatorExit(address rollupAdmin,bytes[] calldata pubkeys)
     ```
-4.  **Validator exit Balance transfer:** Nexus Network oracles communicate with this function to update whenever an exited validator balance is transferred to the rollup bridge. Whenever the function receives an update, it communicates the rollup bridge contract about the balance transfer and informs the Node Operators to stop performing the validation for the validator
+
+
+4.  **Validator exit balance transfer:** Nexus Network oracles communicate with this function to update whenever an exited validator balance is transferred to the rollup bridge. Whenever the function receives an update, it communicates the rollup bridge contract about the balance transfer and informs the Node Operators to stop performing the validation for the validator
 
     ```solidity
     function validatorExitBalanceTransferred(address rollupAdmin,bytes calldata pubkey, uint64[] memory operatorIds, ISSVNetworkCore.Cluster memory cluster)
@@ -101,6 +109,8 @@ Validators are the backbone of any staking infrastructure and likewise are one o
             ValidatorShares calldata _validatorShare
         )
     ```
+
+
 2.  **Recharge SSV cluster:** This function pays the SSV fees by sending money to the SSV contract. This includes fees for node operators as well as SSV specific fees
 
     ```solidity

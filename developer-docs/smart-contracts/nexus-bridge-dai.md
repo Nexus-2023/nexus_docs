@@ -7,12 +7,16 @@ Nexus Bridge DAI allows a rollup to deposit the DAI locked in the rollup bridge 
     ```solidity
     function depositDai(uint256 amountSave)
     ```
+
+
 2.  **Remove DAI**: This function removes DAI from the DSR contract and gives it back to the user whenever they claim the DAI from the bridge
 
     ```solidity
     function removeDai(address user, uint256 amountRedeem)
     ```
-3.  **Claim Rewards DAI**: This function is used by the Rollup governance to claim and utilize the DSR rewards
+
+
+3.  **Claim Rewards DAI**: This function is used by the rollup governance to claim and utilize the DSR rewards
 
     ```solidity
     function claimRewardsDAI(address address_to_send)

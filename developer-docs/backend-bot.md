@@ -1,29 +1,30 @@
 # 🤖 Backend Bot
 
-The backend bot monitors the rollup bridge contracts and initiates the validator key creation process and validator exits
+The backend bot continuously monitors the rollup bridge contracts including the current stake, staking limit set by the rollup, validator withdrawals, etc. It also initiates the validator key creation process and the validator exits
 
-### How does it work?
+### Monitoring of staking limit
 
-The backend bot monitors the rollup bridge contracts and creates keys and exits depending on the staking limit set by the Rollup admin:
+Every rollup integrated with Nexus Network sets a staking limit, i.e. the proportion of ETH locked in the bridge to be staked by Nexus Network. The backend bot monitors the rollup bridge contracts and creates keys and exits depending on the staking limit set by the rollup:
 
-1. **When the current staking limit is less than the staking limit set by the rollup:** In this scenario, the following steps are executed;
+1. **When the current staking limit is less than the staking limit set by the rollup:** In this scenario, the following steps are executed -
    1. The backend bot calculates the number of validators to be created to reach the staking limit
-   2. The validators are created and deposit data for validators is sent to the Nexus contract which sends it to the respective rollup bridge for activation
-   3. The keyshares data is sent to the Nexus Contract which sends it to the SSV contract for registration, after which the Node operator can start performing validator duties
+   2. The validators are created and deposit data for validators is sent to the Nexus contract. Nexus contract sends it to the respective rollup bridge for activation
+   3. The keyshares data is sent to the Nexus Contract which sends it to the SSV contract for registration, after which the Node operator can start performing validator duties\
+
 2. **When the current staking limit is more than the staking limit set by the rollup**: In this scenario, the following steps are executed;
    1. The backend bot calculates the number of validators to be exited to reach the staking limit
    2. The exit message is created for the validators and is broadcast to the consensus chain
-   3. Nexus contract is informed of all the validators for which exit is deposited. This is to ensure that the Nexus contracts can keep track of validators that are pending exit
+   3. The bot informs the Nexus contract of all the exiting validators. This ensures that the Nexus contracts can keep track of validators that are pending exit
 
 _<mark style="color:blue;">The bot is deployed on AWS EC2 instance with limited access to the world. It can only be accessed by a single ssh key and that is stored offline and is only used for deployment.</mark>_
 
 ### Validator Key Management
 
-Validator Key Management is a crucial part of any system. It can be done in two ways:
+Validator Key Management is crucial to maintain the security of the system. It can be done in two ways:
 
 #### Centralized Key Management
 
-Centralized keys require an extra effort in storing the keys and mnemonic (if stored). Nexus Network manages the keys for a centralized system in the following ways:
+Centralized keys make it necessary to store the keys and mnemonic (if stored). Nexus Network manages the keys for a centralized key management system in the following ways:
 
 1.  Whenever a new rollup is registered, a new mnemonic is created and stored in an AWS vault
 

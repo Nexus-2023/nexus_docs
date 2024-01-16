@@ -15,7 +15,7 @@ _<mark style="color:blue;">There can be many possibilities depending on the choi
 
 The rollup must import the following function to allow the DAO to collect rewards -
 
-**RedeemRewards:** A DAO address is added to the bridge contract that can collect the rewards and send them to any address they want by using this function
+**RedeemRewards:** A DAO address is added to the bridge contract that can collect the rewards using this function
 
 ```solidity
 function redeemRewards(address reward_account) onlyDAO
@@ -40,13 +40,13 @@ bridgeBalance = amountDeposited - amountWithdrawn
 
 $$cValue= bridgeBalance/(bridgeBalance+rewards)$$
 
-The rollup will store two additional variables on the bridge, _amountDeposited_ and _amountWithdrawn_ that will track the deposits and withdrawals from the rollup bridge
+The rollup will store two additional variables on the bridge, _amountDeposited_ and _amountWithdrawn_ that will track the deposits and withdrawals from the rollup bridge to calculate the current bridge balance
 
 ### Rebase Token
 
 The rebase token model updates the ETH balance of users on the rollup after regular intervals based on the rewards earned. The rollup sequencer mints ETH equal to rewards earned to all the addresses on the rollup holding ETH. This ensures that the total ETH on Ethereum L1 is equal to the ETH on the rollup. The following function is used to implement the same:
 
-**Rebase**: This function calculates the amount that needs to be distributed to the users on the rollup and emits an event `RebaseAmount` so that the sequencer can distribute it
+**Rebase**: This function calculates the amount that needs to be distributed to the users on the rollup and emits an event `RebaseAmount`. The sequencer on the rollup reads this event and distributes ETH to all the addresses holding ETH on the rollup&#x20;
 
 ```solidity
 uint256 public amountDistributed; // amount already distributed

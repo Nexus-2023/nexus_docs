@@ -18,18 +18,15 @@ Nexus Network has built an easy-to-integrate solution for the rollups. The Nexus
 
 Here are the steps to integrate with Nexus Network on the Goerli Test Network -
 
-1.  There are  different types of nexus bridge contracts that you can implement in the bridge contract:
+1. The rollup selects the [preferred implementation](smart-contracts/nexus-bridge-eth/different-nexus-bridge-architecture.md) for the distribution of staking rewards\
+   Code - [https://github.com/Nexus-2023/Nexus-Contracts/tree/main/contracts/nexus\_bridge](https://github.com/Nexus-2023/Nexus-Contracts/tree/main/contracts/nexus\_bridge)
+2. Once the implementation is selected, the rollup has two deployment options to import the nexus-package:
+   1.  **Deploy Nexus as a library**: This can be done by deploying the nexus-package separately and storing the library address in the bridge contract
 
-    Code - [https://github.com/Nexus-2023/Nexus-Contracts/tree/main/contracts/nexus\_bridge](https://github.com/Nexus-2023/Nexus-Contracts/tree/main/contracts/nexus\_bridge)
+       Example code with polygon zkEVM: [https://github.com/Nexus-2023/zkevm-contracts/blob/polygon/Tangible/contracts/PolygonZkEVMBridge.sol](https://github.com/Nexus-2023/zkevm-contracts/blob/polygon/Tangible/contracts/PolygonZkEVMBridge.sol)
+   2.  **Integrate with bridge**: This can be done by inheriting the nexus-package.
 
-    After selecting the type of nexus bridge you need to figure out how you want to integrate:
-
-    1.  **Deploy Nexus as a library**: This can be done by deploying the nexus-package separately and storing the library address in the bridge contract
-
-        Example code with polygon zkEVM: [https://github.com/Nexus-2023/zkevm-contracts/blob/polygon/Tangible/contracts/PolygonZkEVMBridge.sol](https://github.com/Nexus-2023/zkevm-contracts/blob/polygon/Tangible/contracts/PolygonZkEVMBridge.sol)
-    2.  **Integrate with bridge**: This can be done by inheriting the nexus-package.
-
-        Example code: [https://github.com/Nexus-2023/Nexus-Contracts/blob/main/contracts/demo\_contracts/BridgeContractDAO.sol](https://github.com/Nexus-2023/Nexus-Contracts/blob/main/contracts/demo\_contracts/BridgeContractDAO.sol)
+       Example code: [https://github.com/Nexus-2023/Nexus-Contracts/blob/main/contracts/demo\_contracts/BridgeContractDAO.sol](https://github.com/Nexus-2023/Nexus-Contracts/blob/main/contracts/demo\_contracts/BridgeContractDAO.sol)
 
 &#x20;       Optimism Bridge:
 

@@ -16,8 +16,8 @@
 
 ## Demo
 
-* [🛠 Integration (Frontend)](demo/integration-frontend.md)
-* [🖇 Integration (Backend)](demo/integration-backend.md)
+* [🛠️ Integration (Frontend)](demo/integration-frontend.md)
+* [🖇️ Integration (Backend)](demo/integration-backend.md)
 
 ## Developer Docs
 
@@ -29,4 +29,4 @@
   * [Nexus Bridge DAI](developer-docs/smart-contracts/nexus-bridge-dai.md)
   * [Validator Execution Rewards](developer-docs/smart-contracts/validator-execution-rewards.md)
 * [🤖 Backend Bot](developer-docs/backend-bot.md)
-* [🖥 Integration Guide](developer-docs/integration-guide.md)
+* [🖥️ Integration Guide](developer-docs/integration-guide.md)

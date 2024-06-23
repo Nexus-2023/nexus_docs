@@ -5,7 +5,7 @@ The Node Operator Contract handles all the operations related to Node Operators 
 1.  **Register SSV Operator:** This function registers a new SSV node operator with Nexus Network
 
     ```solidity
-    function registerSSVOperator(uint64 _operator_id, string calldata _pub_key, string calldata _ip_address, string calldata name)
+    function registerSSVOperator(uint64 _operatorId, string calldata _pubKey, string calldata _ipAddress, string calldata name)
     ```
 
     \
@@ -19,7 +19,7 @@ The Node Operator Contract handles all the operations related to Node Operators 
 2.  **Update SSV operator IP**: This function updates the DKG IP for the node operator registered with Nexus
 
     ```solidity
-    function updateSSVOperatorIP(uint64 _operator_id,string calldata _ip_address)
+    function updateSSVOperatorIP(uint64 _operatorId,string calldata _ipAddress)
     ```
 
 

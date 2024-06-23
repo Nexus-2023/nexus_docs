@@ -14,30 +14,29 @@ layout:
 
 # 🏹 Nexus Network Design Document
 
-### Purpose
+## Purpose
 
-The purpose of this doc is to give a high-level overview of the system architecture and workings of different components. This acts as a guide for developers/enthusiasts to deep dive into the protocol design. This will also help other open-source contributors to understand how Nexus Network is going to tackle the problem faced by rollups.
+The purpose of this doc is to give a high-level overview of the system architecture and workings of different components. This acts as a guide for developers/enthusiasts to deep dive into the protocol design. This will also help other open-source contributors to understand how Nexus Network is tackling the native yield problem in a non-custodial decentralized manner.
 
-### Scope
+The document answers the following questions:
 
-The scope of this document covers the following elements:
+1. What changes are needed in rollup architecture?
+2. How can we generate yield by staking using DVT?
+3. How can we manage Node Operators?
 
-1. **User Flows**: This includes all the data flows in Nexus Network design
-2. **Contracts:** A brief explanation of all the contracts that will be used by Nexus Network
-3. **Off-chain bots:** Off-chain bots will be used to track and perform certain actions needed by the protocol to trigger smart contract execution
+## Rollups:
 
-## User Flows:
+### What changes are needed in rollup architecture?
 
-### Registration Flow:
+For any rollup to enable native yield from eth by staking, they'll need to change their bridge contract where eth ends up while bridging. This is to ensure that the flow of ETH can happen from the Rollup Bridge contract to the Ethereum Deposit contract. Nexus Network onboards the rollup by following the below steps:
 
-<figure><img src="../.gitbook/assets/Registration_Flow_vf.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>Rollup Registration</p></figcaption></figure>
 
 Onboarding on a new rollup involves a three-step process -
 
 1. **Changes in the rollup bridge contract** - Rollup makes a few changes in the bridge contract that enable the transfer of ETH locked in the rollup to the validator deposit contract. The rollup also enables a few functions -
 
 * _depositValidator()_ - The function is called to transfer ETH to a validator that is being activated for the rollup. Only Nexus Network contracts can call this function
-* _updateRewards()_ - This function call updates the rewards earned by validators activated by the rollups and is allowed only to Nexus Network contracts
 * _redeemRewards() -_ This function is used by the rollup admin to claim the rewards earned by validators activated by the rollups
 
 ```solidity
@@ -47,7 +46,6 @@ address public NEXUS_NETWORK = <NEXUS_CONTRACT_ADDRESS>
 uint256 constant VALIDATOR_DEPOSIT = 32 ether
 Rewards public stakingReturns
 function depositValidator(INexusInterface.Validator[] calldata _validators,uint256 stakingLimit,uint256 validatorCount) onlyNexus
-function updateRewards(uint256 amount,bool slashed,uint256 validatorCount) onlyNexus
 function redeemRewards() onlyDAO
 ```
 
@@ -63,16 +61,19 @@ function whitelistRollup(string calldata name, address rollupAddress) onlyOwner
 struct Rollup{
 	address bridgeContract;
 	unit16 stakingLimit;
-	unit64 validatorCount;
 	uint32 operatorCluster;
 }
 mapping(address=>Rollup) public rollups;
 mapping(uint32=>uint32[]) public operatorClusters;
 
-function registerRollup(address bridgeContract,uint32 operatorCluster,uint16 stakingLimit) external 
+function registerRollup(address bridgeContract,uint32 operatorCluster,uint256 nexusFee,uint16 stakingLimit) external 
 ```
 
-### Validator Flow:
+### How can we generate yield by staking using DVT?
+
+To generate yields from the bridged assets, one needs to stake the ETH with the validators. The process should be secure and decentralized so that the bridged assets are safe. To ensure this, Nexus Network uses [SSV](https://ssv.network/) DVT and DKG solution to ensure the keys are securely distributed and uptime is maintained. This also ensures that the key is never at a single place at any point in time. Nexus Network follows the below architecture to achieve the same:
+
+#### 1. Validator Creation and submission
 
 <figure><img src="../.gitbook/assets/Validator_Flow_vf.png" alt=""><figcaption></figcaption></figure>
 
@@ -84,9 +85,9 @@ Once a rollup has registered with Nexus Network, it sets a staking limit determi
 4. The public key of the validator generated during the DKG event is shared with the Nexus Network contracts which calls the rollup to activate the validator by transferring 32 ETH to the validator
 5. Once the ETH is transferred, the validator starts performing staking operations with the support of the node operators in the cluster
 
-### Rewards Flow:
+#### 2. Reward Distribution
 
-<figure><img src="../.gitbook/assets/Rewards_Flow_vf.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 Rollup has multiple options for rewards. Currently, the bridge contract is set as the withdrawal address and it receives all the staking rewards.
 
@@ -97,7 +98,7 @@ The staking rewards are divided into two parts -
 * Rollup DAO gets 90% of the staking rewards.
 * Nexus Network gets 10% of the staking rewards as revenue. Nexus Network will cover the node operator fee, SSV network fee, and operational cost from this and the rest will be profit for Nexus Network
 
-### Validator Exit Flow:
+#### 3. Validator Exits
 
 <figure><img src="../.gitbook/assets/Validator_Exit_Flow_vf.png" alt=""><figcaption></figcaption></figure>
 
@@ -112,17 +113,17 @@ Once the validator exit is confirmed by the node operators, the off-chain bots n
 
 Nexus Network runs an off-chain bot that checks for the receipt of funds from validator exits. Once the validator exit is complete and funds are received in the bridge contract from the consensus chain, the off-chain bot updates the details in the Nexus contracts.
 
-### Operator Flow:
+### How can we manage Node Operators?
 
 Node operators perform two critical tasks for Nexus Network -
 
 1. They participate in the DKG ceremony to generate keyshares for the validators in a decentralized way
 2. They help in running validators
 
-**Operator registration**
+**Operator Registration**
 
-* Any node operator registered with the SSV network can register on Nexus using its Operator Id
-* The node operators must put up some security collateral on Nexus Network to participate in the validation process. The exact mechanism for the security collateral is under design
+* Any node operator registered with the SSV network can register on Nexus using its Operator ID, DKG IP address and name
+* Currently, only whitelisted operators can participate with Nexus Network. Nexus Network will work towards making the operator set more decentralised over time
 
 **Operator key generation**
 

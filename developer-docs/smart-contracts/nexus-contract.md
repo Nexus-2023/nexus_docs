@@ -1,6 +1,6 @@
 # Nexus Contract
 
-This contract is the heart and soul of Nexus Network. This contract is a UUPS upgradeable contract that allows the addition of new functionalities according to the needs of the rollups. The contract can be made non-upgradeable once the code is frozen. It is responsible for the following actions:
+This contract is the heart and soul of Nexus Network. This contract is a **UUPS upgradeable** contract that allows the addition of new functionalities according to the needs of the rollups. The contract can be made non-upgradeable once the code is frozen. It is responsible for the following actions:
 
 ### Admin Management
 
@@ -20,7 +20,12 @@ This contract is the heart and soul of Nexus Network. This contract is a UUPS up
     ```
 
 
-3.  **Change Execution Fee Recipient Address:** Block proposer rewards earned by validators are sent to a different wallet address to prevent any potential confusion for the sequencer**.** The changeExecutionFeeAddress() function sets the execution fee recipient address
+3.  **Set Off Chain oracle:** This function sets the off-chain oracle bot:
+
+    ```solidity
+    function setOffChainBot(address _botAddress) 
+    ```
+4.  **Change Execution Fee Recipient Address:** Block proposer rewards earned by validators are sent to a different wallet address to prevent any potential confusion for the sequencer**.** The changeExecutionFeeAddress() function sets the execution fee recipient address
 
     <pre class="language-solidity"><code class="lang-solidity"><strong>function changeExecutionFeeAddress(address _execution_fee_address)
     </strong></code></pre>
@@ -38,13 +43,14 @@ This contract is the heart and soul of Nexus Network. This contract is a UUPS up
 
     1. **bridgeContract**: This is the modified bridge contract address that has the Nexus Network package integrated&#x20;
     2. **operatorCluster**: Set of node operators as selected by the rollup. If the rollups do not have a preference, Nexus Network will set the operatorCluster to the most performant clusters
-    3. **nexusFee**: Sets the percentage of staking returns that go to Nexus Network as fees. It is set by the rollup in consultation with the Nexus Network team.\
+    3. **nexusFee**: Sets the percentage of staking returns that go to Nexus Network as fees. It is set by the rollup in consultation with the Nexus Network team.
+    4. **stakingLimit:** Set the staking limit for the bridge contract. This determines percentage of ETH that needs to be staked.\
 
 2. **Change Rollup Parameters**
    1.  **Changing Staking Limit**: Rollups can use this function to change their staking limit.
 
        ```solidity
-       changeStakingLimit(uint16 newStakingLimit)
+       function changeStakingLimit(uint16 newStakingLimit)
        ```
    2.  **Change Nexus Fee**: Rollups can use this function to set a new fee for Nexus Network &#x20;
 

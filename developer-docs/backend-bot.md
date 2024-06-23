@@ -22,7 +22,7 @@ _<mark style="color:blue;">The bot is deployed on AWS EC2 instance with limited 
 
 Validator Key Management is crucial to maintain the security of the system. It can be done in two ways:
 
-#### Centralized Key Management
+#### Centralized Key Management(<mark style="color:red;">Depreciated</mark>)
 
 Centralized keys make it necessary to store the keys and mnemonic (if stored). Nexus Network manages the keys for a centralized key management system in the following ways:
 

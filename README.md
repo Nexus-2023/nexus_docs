@@ -14,8 +14,4 @@ layout:
 
 # 👋 Introduction
 
-Ethereum's rollup-centric roadmap ties up a substantial ETH supply in rollup bridges, lowering Ethereum security and rollup’s capital efficiency. Nexus Network solves this by securely and non-custodially staking ETH in bridges, yielding consistent returns for rollups
-
-The video below gives a small Introduction of Nexus Network -
-
-{% embed url="https://youtu.be/G6j4VTPtY58" %}
+Nexus Network brings secure yields for idle bridge assets. A large supply of ETH and stablecoins are locked in bridges to Ethereum rollups and EVM chains, making it capital inefficient. Nexus Network solves this by bringing secure and non-custodial yields for these assets, allowing the chains to supercharge their ecosystem growth with additional yields.

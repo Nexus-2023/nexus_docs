@@ -14,11 +14,6 @@
 
 * [🏹 Nexus Network Design Document](design-architecture/nexus-network-design-document.md)
 
-## Demo
-
-* [🛠️ Integration (Frontend)](demo/integration-frontend.md)
-* [🖇️ Integration (Backend)](demo/integration-backend.md)
-
 ## Developer Docs
 
 * [📔 Smart Contracts](developer-docs/smart-contracts/README.md)

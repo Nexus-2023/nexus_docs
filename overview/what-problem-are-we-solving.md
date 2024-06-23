@@ -16,10 +16,12 @@ layout:
 
 ### Problem statement
 
-Ethereum made its monumental shift to Proof of Stake in September ’22. The enabling of ETH withdrawals in April ’23 has resulted in large inflows of ETH to get staked to the network. Even after that, the amount of ETH staked is 23%, much lower than other Proof of Stake networks. The longer-term movement will be towards staking a large part of the network to increase the cost of attack on Ethereum.
+As of June '24, more than 3.5% of the entire ETH supply is locked in bridges. A major chunk of this is locked in rollup bridges, driven by the rollup-centric roadmap for Ethereum. We expect the ETH locked in bridges to grow to over 20% in the next few years. The locked ETH results in capital inefficiency on the rollup and a reduction of security for Ethereum (as the ETH is not staked)
 
-Rollups have had a tremendous growth story over the past 2 years, driven by the rollup-centric roadmap for Ethereum. This has led to a large movement of ETH to rollups moving more than 1.5% of ETH supply. We expect the number to grow to over 20% in the next few years. The ETH deposited to rollups gets locked in rollup bridges resulting in capital inefficiency and a reduction in the security of the network.
+### Nexus Network: "Secure yields for idle bridge assets"
 
-### Nexus Network: "Economic Layer for Rollups"
+Nexus Network brings secure yields for idle assets locked in Ethereum rollups and EVM chains. Nexus Network provides a complete suite of products for ETH and stablecoin yields with - &#x20;
 
-Nexus Network envisions becoming the economic layer for rollups. Using our pluggable staking infrastructure, rollups can stake the ETH locked in their bridges within minutes and earn a continuous stream of stable staking returns. Nexus Network leverages Distributed Validator Technology (DVT) and Distributed Key Generation (DKG) for staking. DVT minimizes validator centralization and slashing risks and DKG ensures no single entity owns the complete validator key, hence enhancing security. &#x20;
+* Easy integration: Pluggable staking infrastructure integrates rollups through a few smart contract calls. Once integrated, Nexus Network takes care of all requirements
+* Maximum security: Non-custodial solution where rollup assets never touch Nexus contracts
+* Slashing protection: Uses the latest staking technologies including Distributed Validator Technology (DVT) and Distributed Key Generation (DKG). Slashing insurance from leading industry players to protect against slashing in the worst-case&#x20;

@@ -24,4 +24,6 @@
   * [Nexus Bridge DAI](developer-docs/smart-contracts/nexus-bridge-dai.md)
   * [Validator Execution Rewards](developer-docs/smart-contracts/validator-execution-rewards.md)
 * [🤖 Backend Bot](developer-docs/backend-bot.md)
+* [🚲 Nexus Testnet](developer-docs/nexus-testnet.md)
 * [🖥️ Integration Guide](developer-docs/integration-guide.md)
+* [💻 Node Operators](developer-docs/node-operators.md)
